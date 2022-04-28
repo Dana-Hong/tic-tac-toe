@@ -1,0 +1,54 @@
+/* CSS RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+    /* footer support */
+    position: relative;
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+    border: solid blue 5px;
+    display: grid;
+    grid-template: 1fr 4fr 1fr / 1fr 4fr 1fr;
+}
+
+header {
+    grid-area: 1 / 1 / 2 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.game-board-container {
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-board {
+    height: 850px;
+    width: 850px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    border: solid black 1px;
+}
+
+.square {
+    border: solid 1px black;
+}
+
+.stats {
+    grid-area: 3 / 2 / 4 / 3;
+    display: flex;
+    justify-content: space-evenly;
+}
