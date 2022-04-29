@@ -15,7 +15,6 @@ html {
 
 body {
     height: 100%;
-    border: solid blue 5px;
     display: grid;
     grid-template: 1fr 4fr 1fr / 1fr 4fr 1fr;
 }
@@ -45,6 +44,8 @@ header {
 
 .square {
     border: solid 1px black;
+    font-size: 10rem;
+    text-align: center;
 }
 
 .stats {
