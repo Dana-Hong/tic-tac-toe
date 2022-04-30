@@ -8,13 +8,9 @@ let Player = function(name, marker, turn) {
     }
 
     let placeMarker = (event) => {
-        if (event.textContent) {
-            event.status = 'filled';
-            return;
-        } else {
-            event.textContent = marker;
-        }
+        event.textContent = marker;
     }
+
     return { name, marker, turn, placeMarker, startTurn, endTurn };
 }
 
@@ -22,25 +18,23 @@ let playerOne = Player('Player1', 'X', true);
 let playerTwo = Player('Player2', 'O', false);
 
 let Square = function(DOMObject) {
-    let status;
+    DOMObject.status = false;
     let handleEvent = () => {
-        if (playerOne.turn) {
-            if (DOMObject.status) {
-                console.log('hey P1, there is something here arleady');
-                return;
-            } else if (!DOMObject.status) {
+        if (DOMObject.status) {
+            return console.log('square filled already', playerOne.turn, `testing:`, DOMObject.status);
+        } else if (!DOMObject.status) {
+            if (playerOne.turn) {
                 playerOne.placeMarker(DOMObject);
                 playerOne.turn = playerOne.endTurn();
                 playerTwo.turn = playerTwo.startTurn();
-            }
-        } else if (playerTwo.turn) {
-            if (DOMObject.status) {
-                console.log('P2, theres something here');
-                return;
-            } else if (!DOMObject.status) {
+                DOMObject.status = true;
+                console.log('hey1');
+            } else if (playerTwo.turn) {
                 playerTwo.placeMarker(DOMObject);
                 playerTwo.turn = playerTwo.endTurn();
                 playerOne.turn = playerOne.startTurn();
+                DOMObject.status = true;
+                console.log('hey2');
             }
         }
     }
