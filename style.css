@@ -43,9 +43,11 @@ header {
 }
 
 .square {
-    border: solid 1px rgb(180, 72, 72);
+    border: solid 1px black;
     font-size: 7rem;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .stats {
