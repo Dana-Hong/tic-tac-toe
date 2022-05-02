@@ -35,16 +35,16 @@ header {
 }
 
 .game-board {
-    height: 850px;
-    width: 850px;
+    height: 500px;
+    width: 500px;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     border: solid black 1px;
 }
 
 .square {
-    border: solid 1px black;
-    font-size: 10rem;
+    border: solid 1px rgb(180, 72, 72);
+    font-size: 7rem;
     text-align: center;
 }
 
