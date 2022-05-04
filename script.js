@@ -1,6 +1,12 @@
 (function() {
     let currentPlayer = document.querySelector('.current-player-turn');
     let playerCreation = document.querySelector('.player-creation-screen');
+    let playerOneInput = document.querySelector('#player-one');
+    let playerTwoInput = document.querySelector('#player-two');
+    let playerOneWinDisplay = document.querySelector('.player-one > .win-display');
+    let playerTwoWinDisplay = document.querySelector('.player-two > .win-display');
+    let playerOneName = document.querySelector('.p1-name');
+    let playerTwoName = document.querySelector('.p2-name');
 
     playerCreation.showModal();
 
@@ -21,7 +27,7 @@
     dia2: [],    
     }
 
-    let Player = function(name, marker, turn) {
+    let Player = function(name, marker, turn, score, display) {
         let startTurn = () => {
             return true;
         }
@@ -34,7 +40,7 @@
             event.textContent = marker;
         }
 
-        return { name, marker, turn, placeMarker, startTurn, endTurn };
+        return { name, marker, turn, score, display, placeMarker, startTurn, endTurn };
     }
 
     
@@ -50,6 +56,7 @@
                     playerTwo.turn = playerTwo.startTurn();
                     currentPlayer.textContent = `${playerTwo.name}'s turn!`;
                     square.status = true;
+                    game.trackTie++;
                     game.addMarkerToBoard(playerOne.marker, square.id);
                     game.checkWin(playerOne);
                 } else if (playerTwo.turn) {
@@ -58,6 +65,7 @@
                     playerOne.turn = playerOne.startTurn();
                     currentPlayer.textContent = `${playerOne.name}'s turn!`;
                     square.status = true;
+                    game.trackTie++;
                     game.addMarkerToBoard(playerTwo.marker, square.id);
                     game.checkWin(playerTwo);
                 }
@@ -76,15 +84,20 @@
     }
 
     let game = {
+
+        trackTie: 0,
+
         createPlayers() {
-            let playerOneInput = document.querySelector('#player-one').value;
-            let playerTwoInput = document.querySelector('#player-two').value;
-            if (!playerOneInput || !playerTwoInput) {
+            if (!playerOneInput.value || !playerTwoInput.value) {
                 return;
             } else {
                 playerCreation.close();
-                playerOne = Player(playerOneInput, 'X', true);
-                playerTwo = Player(playerTwoInput, 'O', false);
+                playerOne = Player(playerOneInput.value, 'X', true, 0, playerOneWinDisplay);
+                playerTwo = Player(playerTwoInput.value, 'O', false, 0, playerTwoWinDisplay);
+                playerOneName.textContent = playerOne.name;
+                playerTwoName.textContent = playerTwo.name;
+                playerOne.display.textContent = playerOne.score;
+                playerOne.display.textContent = playerOne.score;
                 currentPlayer.textContent = `${playerOne.name}'s turn!`;
                 return (playerOne, playerTwo);
             }
@@ -92,9 +105,17 @@
 
         checkWin(player) {
             for (let row_col_diag in gameBoard) {
+                console.log(game.trackTie);
                 if (gameBoard[row_col_diag].length === 3 && gameBoard[row_col_diag].every(marker => marker === player.marker)) {
                     document.querySelector('.winner').textContent = `${player.name} Wins!`;
-                    document.querySelector('.current-player-turn').textContent = `${player.name} Wins!`
+                    document.querySelector('.current-player-turn').textContent = `${player.name} Wins!`;
+                    player.score++;
+                    player.display.textContent = player.score;
+                    gameOverModal.showModal();
+                }
+                if (game.trackTie === 9) {
+                    document.querySelector('.winner').textContent = 'Tie Game!';
+                    document.querySelector('.current-player-turn').textContent = `Tie Game`;
                     gameOverModal.showModal();
                 }
             }
@@ -163,11 +184,16 @@
 
         startNewGame() {
             game.restartRound();
+            playerOneInput.value = '';
+            playerTwoInput.value = '';
+            playerOne.score = 0;
+            playerTwo.score = 0;
+            playerOne.display.textContent = 0;
+            playerTwo.display.textContent = 0;
             playerOne = '';
             playerTwo = '';
             currentPlayer.textContent = ``;
             playerCreation.showModal();
-
         }
     }
 
