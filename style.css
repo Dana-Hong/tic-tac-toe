@@ -5,7 +5,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  /* border: solid red 1px; */
+  border: solid red 1px;
 }
 
 button,
@@ -24,7 +24,7 @@ html {
 
 
 body {
-    height: 100%;
+    height: 100vh;
     display: grid;
     grid-template: 1fr 4fr 1fr / 1fr 4fr 1fr;
     position: relative;
@@ -99,6 +99,7 @@ header {
 .player-creation-header {
     grid-area: 1 / 2 / 2 / 4;
     text-align: center;
+    font-size: 3rem;
 }
 
 label {
