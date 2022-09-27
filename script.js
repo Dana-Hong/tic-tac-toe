@@ -97,7 +97,7 @@
                 playerOneName.textContent = playerOne.name;
                 playerTwoName.textContent = playerTwo.name;
                 playerOne.display.textContent = playerOne.score;
-                playerOne.display.textContent = playerOne.score;
+                playerTwo.display.textContent = playerTwo.score;
                 currentPlayer.textContent = `${playerOne.name}'s turn!`;
                 return (playerOne, playerTwo);
             }
