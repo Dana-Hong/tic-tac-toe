@@ -8,6 +8,14 @@
   /* border: solid red 1px; */
 }
 
+button,
+button::before,
+button::after {
+    box-sizing: border-box;
+    border: none;
+    background: none;
+}
+
 html {
     /* footer support */
     position: relative;
@@ -20,6 +28,8 @@ body {
     display: grid;
     grid-template: 1fr 4fr 1fr / 1fr 4fr 1fr;
     position: relative;
+    background-color: bisque;
+    font-family: 'Sarabun', sans-serif;
 }
 
 .player-info-page {
@@ -70,6 +80,7 @@ header {
 .player-creation-screen {
     width: 100%;
     height: 100%;
+    background-color: bisque;
     border: 0;
     box-shadow: 0 0 1rem rgb(0 0 0 / .3);
     top: 50%;
@@ -94,9 +105,15 @@ label {
     text-align: center;
 }
 
+input {
+    width: 50%;
+}
+
 .player {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
 .player-one {
@@ -109,8 +126,16 @@ label {
 }
 
 #create-player-btn {
-    align-self: start;
     grid-area: 3 / 2 / 4 / 4;
+}
+
+#create-player-btn, .new-game, .play-again {
+    align-self: start;
+    justify-self: center;
+    height: 3rem;
+    width: 6rem;
+    border-radius: 1rem;
+    background: rgb(80, 123, 214);
 }
 
 .game-over-modal {
