@@ -1,7 +1,7 @@
 function Square(selected=false, position) {
     const square = {
         selected,
-        placeMarker: () => {this.selected = true},
+        placeMarker: function(){this.selected = true},
         position
     }
     
