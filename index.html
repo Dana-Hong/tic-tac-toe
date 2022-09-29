@@ -9,57 +9,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <script src="script.mjs" type="module" defer></script>
 </head>
 <body>
-    <div class="player-info-page"></div>
-    <header>
-        <h1>Tic-Tac-Toe!</h1>
-        <h2 class="current-player-turn"></h2>
-    </header>
-    <dialog class="player-creation-screen">
-        <div class="player-creation-container">
-            <h1 class="player-creation-header">Tic Tac Toe!</h1>
-            <div class="player player-one">
-                <label for="player-one">Player One:</label>
-                <input type="text" name="player-one" id="player-one">
-            </div>
-            <div class="player player-two">
-                <label for="player-two">Player Two:</label>
-                <input type="text" name="player-two" id="player-two">
-            </div>
-            <button type="button" id="create-player-btn">Ready</button>
-        </div>
-    </dialog>
-    <div class="game-board-container">
-        <div class="game-board">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-        </div>
+    <div class="container">
+        <h1 class="game-title">Tic-Tac-Toe fun!</h1>
+        <p class="game-message"></p>
     </div>
-    <div class="stats">
-        <div class="player-one">
-            <div class="p1-name"></div>
-            <div class="win-display"></div>
-        </div>
-        <div class="player-two">
-            <div class="p2-name"></div>
-            <div class="win-display"></div>
-        </div>
-    </div>
-    <dialog class="game-over-modal">
-        <div class="game-over-modal-info">
-            <h2 class="winner"></h2>
-            <button class="new-game" type="button">New Game</button>
-            <button class="play-again" type="button">Play Again</button>
-        </div>
-    </dialog>
 </body>
 </html>
