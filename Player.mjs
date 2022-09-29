@@ -3,7 +3,8 @@ export default function Player(name, marker) {
         name,
         turn: false,
         marker,
-        placements: []
+        placements: [],
+        won: false
     }
     
     return player;
