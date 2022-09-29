@@ -1,14 +1,25 @@
 import Square from "./Square.mjs";
 
 export default function Gameboard() {
-    let squares = new Array(9).fill("");
-    squares = squares.map((square, index) => Square(index));
-
     const gameBoard = {
         gameStarted: false,
         gameOver: false,
-        squares: squares
+        winner: null,
+        gameBoardElement: document.createElement('div'),
+        resetBtn: document.createElement('button')
     }
+
+    let squares = new Array(9).fill("");
+    gameBoard.squares = squares.map((square, index) => {
+        square = Square(index);
+        gameBoard.gameBoardElement.append(square);
+    });
+
+
+    document.querySelector('.container').append(gameBoard.gameBoardElement, gameBoard.resetBtn);
+    gameBoard.resetBtn.textContent = 'Reset';
+    gameBoard.resetBtn.disabled = true;
+    gameBoard.gameBoardElement.classList.add('gameboard');
 
     return gameBoard;
 }
