@@ -3,17 +3,24 @@ import Gameboard from "./Gameboard.mjs";
 import winningCoordinates from "./winningCoordinates.mjs";
 
 function StartGame(player1name, player2name) {
+
     let gameBoard = setUpGame(player1name, player2name);
     let {
+        squares,
         player1,
         player2,
         currentPlayer,
         gameBoardMessageElement,
         gameOver,
         winner,
-        resetBtn
+        resetBtn,
+        backToMainBtn
     } = gameBoard;
 
+    
+    resetBtn.addEventListener('click', resetGame);
+    backToMainBtn.addEventListener('click', goBackToMainMenu);
+    
     function setUpGame(player1name, player2name) {
         const gameBoard = Gameboard();        
         gameBoard.player1 = Player(player1name, '✕');
@@ -21,8 +28,37 @@ function StartGame(player1name, player2name) {
         gameBoard.player1.turn = true;
         gameBoard.currentPlayer = gameBoard.player1;
         gameBoard.gameBoardMessageElement.textContent = `${gameBoard.currentPlayer.name}'s Turn`;
-        Array.from(gameBoard.gameBoardElement.children).map(square => square.addEventListener('click', (event) => handleSquareClick(event, gameBoard.currentPlayer)));
+        gameBoard.squares = Array.from(gameBoard.gameBoardElement.children);
+        gameBoard.squares.map(square => square.addEventListener('click', (event) => handleSquareClick(event, currentPlayer)));
         return gameBoard;
+    }
+
+    function resetGame() {
+        squares.forEach(square => {
+            square.textContent = '';
+            square.disabled = false;
+        });
+        player1.turn = true;
+        player1.won = false;
+        
+        player1.placements = [];
+        player2.placeMarker = [];
+        player2.turn = false;
+        currentPlayer = player1;
+        gameOver = false;
+        resetBtn.disabled = true;
+        resetBtn.classList.add('invisible');
+        backToMainBtn.disabled = true;
+        backToMainBtn.classList.add('invisible');
+        updateDOM();
+        
+    }
+    
+    function goBackToMainMenu() {
+        resetGame();
+        const mainMenu = document.querySelector('.main-menu');
+        mainMenu.classList.remove('invisible');
+        gameBoard.gameBoardContainerElement.parentNode.removeChild(gameBoard.gameBoardContainerElement);
     }
 
     function handleSquareClick(event, currentPlayer) {
@@ -61,7 +97,7 @@ function StartGame(player1name, player2name) {
         if (player1.turn) {
             player1.turn = false;
             player2.turn = true;
-            currentPlayer = gameBoard.player2;
+            currentPlayer = player2;
         } else {
             player1.turn = true;
             player2.turn = false;
@@ -76,12 +112,18 @@ function StartGame(player1name, player2name) {
             gameBoardMessageElement.textContent = `It's a draw!`
             resetBtn.disabled = false;
             resetBtn.classList.remove('invisible');
+            backToMainBtn.disabled = false;
+            backToMainBtn.classList.remove('invisible');
         } else if (gameOver) {
             gameBoardMessageElement.textContent = `${winner} Wins!`
             resetBtn.disabled = false;
             resetBtn.classList.remove('invisible');
+            backToMainBtn.disabled = false;
+            backToMainBtn.classList.remove('invisible');
         }
     }
+
+    return {winner, resetBtn, backToMainBtn};
 
 }
 

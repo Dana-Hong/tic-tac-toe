@@ -8,13 +8,23 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400&display=swap" rel="stylesheet">
     <script src="script.mjs" type="module" defer></script>
 </head>
 <body>
-    <div class="container">
+    <div class="main-menu">
         <h1 class="game-title">Tic-Tac-Toe fun!</h1>
-        <p class="game-message"></p>
+        <div class="input-container">
+            <div class="player">
+                <label for="player-one-input" class="player-input-label">Player One:</label>
+                <input type="text" class="player-input" id="player-one-input">
+            </div>
+            <div class="player">
+                <label for="player-two-input" class="player-input-label">Player Two:</label>
+                <input type="text" class="player-input" id="player-two-input">
+            </div>
+        </div>
+        <button class="start-btn btn">Start Game</button>
     </div>
 </body>
 </html>

@@ -9,17 +9,69 @@
 }
 
 body {
+    position: relative;
     font-family: 'Sarabun', sans-serif;
     height: 100vh;
 }
 
-.container {
+.invisible {
+    visibility: hidden;
+    display: none;
+}
+
+.main-menu {
     height: 100vh;
     width: 80%;
+    margin: 0 auto;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.player {
+    padding: 3em 5em 5em 5em;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.player-input-label {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.player-input {
+    height: 2em;
+    font-size: 1.5rem;
+    padding-left: .5rem;
+}
+
+
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-container {
+    display: flex;
+    gap: 5rem;
 }
 
 .game-title {
@@ -34,12 +86,14 @@ body {
 }
 
 .gameboard {
-    min-width: 600px;
-    min-height: 600px;
+    background-color: blue;
+    min-width: 400px;
+    min-height: 400px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     font-weight: light;
+    margin-bottom: 10rem;
     
 }
 
@@ -70,4 +124,20 @@ body {
 .square:nth-child(7),
 .square:nth-child(8) {
     border-right: solid 3px var(--gameBoardTheme);
+}
+
+.btn {
+    font-size: 1.25em;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 400;
+    padding: .8em 1.8em;
+    border: solid red 2px;
+    border-radius: .75em;
+}
+
+@media (min-width: 600px) {
+    .input-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
 }
